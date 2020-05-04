@@ -36,9 +36,6 @@ class feed extends \spouts\spout {
     /** @var ?string URL of the source */
     protected $htmlUrl = null;
 
-    /** @var ?string URL of the favicon */
-    protected $faviconUrl = null;
-
     /** @var Logger */
     private $logger;
 
@@ -103,10 +100,10 @@ class feed extends \spouts\spout {
     }
 
     public function getIcon() {
-        if ($this->faviconUrl !== null) {
-            return $this->faviconUrl;
-        }
+        return null;
+    }
 
+    public function getSourceIcon() {
         // Try to use feed logo first
         $feedLogoUrl = $this->feed->getImageUrl();
         if ($feedLogoUrl && ($iconData = $this->imageHelper->fetchFavicon($feedLogoUrl)) !== null) {
